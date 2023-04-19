@@ -10,7 +10,7 @@
 
   <div class="card">
     <div class="card-body">
-      {{-- rendo riutilizzabile il form sia per il create che per l'edit --}}
+      {{-- rendo riutilizzabile ilform sia per il create che per l'edit --}}
       {{-- aggiungo enctype perche avendo aggiunto le immagini al portfolio ho bisogno di enctype per i file
          --}}
       @if ($project->id)
