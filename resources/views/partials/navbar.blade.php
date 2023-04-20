@@ -22,10 +22,10 @@
                 <li class="nav-item">
                     {{-- il doppio underscore serve per la localization(per la traduzione) --}}
                     
-                    <a class="nav-link" href="{{route('home') }}">{{ __('Home') }}</a>
+                    <a class="nav-link @if(request()->routeIs('admin.projects*'))active @endif" href="{{route('home') }}">{{ __('Projects') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.types.index') }}">{{ __('Types') }}</a>
+                    <a class="nav-link  @if(request()->routeIs('admin.types*'))active @endif" href="{{route('admin.types.index') }}">{{ __('Types') }}</a>
                 </li>
             
             </ul>
