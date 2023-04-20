@@ -93,10 +93,12 @@
           <td>{{$project->created_at}}</td>
           <td>{{$project->updated_at}}</td>
           
-          <td class="d-flex flex-column align-items-center justify-content-between">
-            <a class="" href="{{ route('admin.projects.show', ['project' => $project ])}}"><i class="bi bi-aspect-ratio-fill text-primary fs-3 "></i></a>
-            <a class="" href="{{ route('admin.projects.edit', ['project' => $project ])}}"><i class="bi bi-pencil text-primary fs-3 "></i></a>
-            <button class="bi bi-clipboard2-x-fill text-danger delete-icon fs-3{{route('admin.projects.trash')}}?sort=" data-bs-toggle="modal" data-bs-target="#delete-modal-{{$project->id}}"></button>
+          <td class="d-flex flex-row align-items-center justify-content-between">
+            <a class="" href="{{ route('admin.projects.show', ['project' => $project ])}}"><i class="bi bi-aspect-ratio-fill text-primary fs-5  "></i></a>
+            
+            <a class="" href="{{ route('admin.projects.edit', ['project' => $project ])}}"><i class="bi bi-pencil text-primary fs-5  "></i></a>
+
+            <button class="bi bi-clipboard2-x-fill text-danger delete-icon {{route('admin.projects.trash')}}?sort=" data-bs-toggle="modal" data-bs-target="#delete-modal-{{$project->id}}"></button>
             
             
           </td>

@@ -103,14 +103,13 @@
             
         <tr class="table-dark">
           <th scope="row">{{$project->id}}</th>
-          <td>{{$project->getAbstract()}}</td>
-          <td>{{$project->commits}}</td>
+          <td>{{$project->name}}</td>
           <td>{{$project->contributors}}</td>
           <td class="description">{{$project->getAbstract()}}</td>
           <td>{{$project->created_at}}</td>
           <td>{{$project->updated_at}}</td>
           <td>{{$project->deleted_at}}</td>
-          <td class="d-flex flex-column align-items-center justify-content-between">
+          <td class="d-flex flex-row align-items-center justify-content-between">
 
             {{-- <a class="" href="{{ route('admin.projects.show', ['project' => $project ])}}"><i class="bi bi-aspect-ratio-fill text-primary fs-3 "></i></a>
             <a class="" href="{{ route('admin.projects.edit', ['project' => $project ])}}"><i class="bi bi-pencil text-primary fs-3 "></i></a> --}}
