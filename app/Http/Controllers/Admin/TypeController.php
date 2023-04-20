@@ -41,7 +41,7 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Type $type)
     {
         $request->validate([
             'label' => 'required|string|max:20',
@@ -63,7 +63,7 @@ class TypeController extends Controller
             $type->fill($request->all());
             $type->save();
 
-            return to_route('admin.types.show')
+            return to_route('admin.types.show',$type)
             ->with('message',"Type $type->label created successfully");
     }
 
@@ -118,7 +118,7 @@ class TypeController extends Controller
             $type->update($request->all());
             
 
-            return to_route('admin.types.show')
+            return to_route('admin.types.show',$type)
             ->with('message',"Type $type->label modified successfully");
     }
     

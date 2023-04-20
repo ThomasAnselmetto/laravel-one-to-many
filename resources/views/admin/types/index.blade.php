@@ -81,7 +81,7 @@
         <tr class="table-dark w-100">
           <th>{{$type->id}}</th>
           <td>{{$type->label}}</td>
-          <td>{{$type->color}}</td>
+          <td><span style="background-color:{{$type->color}} " class="color-preview"></span>{{$type->color}}</td>
           <td>{{$type->created_at}}</td>
           <td>{{$type->updated_at}}</td>
           

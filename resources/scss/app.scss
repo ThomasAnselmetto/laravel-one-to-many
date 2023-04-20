@@ -44,3 +44,12 @@ main {
     background-color: transparent;
     border: none;
 }
+
+.color-preview {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+}
