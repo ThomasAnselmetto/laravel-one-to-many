@@ -31,7 +31,7 @@ class Project extends Model
     protected $fillable = ["project_preview_img",
     "name","commits",
     "contributors",
-    "description"];
+    "description","type_id"];
 // ci creiamo la nostra funzione per la logica di creazione dello slug
     public static function generateSlug($name){
 

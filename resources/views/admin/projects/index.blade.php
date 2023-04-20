@@ -44,6 +44,15 @@
               @endif
             </a>
           </th>
+        </th>
+        <th  scope="col">
+          <a href="{{route('admin.projects.index')}}?sort=name&order={{$sort == 'name' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
+            Type
+            @if ($sort == 'name')
+            <i class="bi bi-arrow-down d-inline-block @if($order == 'DESC')rotate-180 @endif"></i>
+            @endif
+          </a>
+        </th>
           <th scope="col">
             <a href="{{route('admin.projects.index')}}?sort=contributors&order={{$sort == 'contributors' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
               Contributors
@@ -88,6 +97,7 @@
         <tr class="table-dark w-100">
           <th>{{$project->id}}</th>
           <td>{{$project->name}}</td>
+          <td>{{$project->type?->label}}</td>
           <td>{{$project->contributors}}</td>
           <td>{{$project->getAbstract()}}</td>
           <td>{{$project->created_at}}</td>

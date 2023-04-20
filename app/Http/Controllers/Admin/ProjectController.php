@@ -6,7 +6,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+
 use App\Models\Project;
+use App\Models\Type;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -19,15 +22,16 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    // {   dammi i post,se c'e' l'ordinamento dammeli in un modo,alrtrimenti in un altro
-{           
-
-            // noi leggiamo sort e order dalla richiesta e gli diamo un default nel caso non ci sia niente e poi li usiamo nell'orderBy dopo li riportiamo anche alla view per generare i link,ruotare le freccette ecc tutto questo e' possibile grazie a withQueryString che ci mantiene la selezione anche al cambio di pagina
+    {
             
-           $sort = (!empty($sort_request = $request->get('sort'))) ? $sort_request : 'updated_at';
-           $order = (!empty($order_request = $request->get('order'))) ? $order_request : 'DESC';
-           $projects = Project::orderBy($sort, $order)->paginate(15)->withQueryString();
-           return view('admin.projects.index',compact('projects','sort','order'));
+      //    dammi i post,se c'e' l'ordinamento dammeli in un modo,alrtrimenti in un altro
+
+      // noi leggiamo sort e order dalla richiesta e gli diamo un default nel caso non ci sia niente e poi li usiamo nell'orderBy dopo li riportiamo anche alla view per generare i link,ruotare le freccette ecc tutto questo e' possibile grazie a withQueryString che ci mantiene la selezione anche al cambio di pagina
+      
+      $sort = (!empty($sort_request = $request->get('sort'))) ? $sort_request : 'updated_at';
+      $order = (!empty($order_request = $request->get('order'))) ? $order_request : 'DESC';
+      $projects = Project::orderBy($sort, $order)->paginate(15)->withQueryString();
+      return view('admin.projects.index',compact('projects','sort','order'));
 
 
         
@@ -39,9 +43,10 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         $project = new Project;
-        return view('admin.projects.form', compact('project'));
+        $types = Type::orderBy('label')->get();
+        return view('admin.projects.form', compact('project','types'));
         
     }
 
@@ -59,6 +64,7 @@ class ProjectController extends Controller
             'name'=>'required|string|max:100',
             'contributors'=>'required|integer',
             'description'=>'required|string',
+            'type_id'=>'nullable|exists:types,id'
 
         ],
         [
@@ -71,6 +77,7 @@ class ProjectController extends Controller
             'contributors.integer'=> 'Contributors must be a number',
             'description.required'=> 'Description is Required',
             'description.string'=> 'Description must be a text',
+            'type_id.exists'=>'Id is invalid'
 
         ]);
         $data = $request->all();
@@ -93,9 +100,9 @@ class ProjectController extends Controller
         return to_route('admin.projects.show',$project)
         ->with('message','Project created successfully');
         // ->with('status', 'Profile updated!');;
+      }
 
 
-    }
 
     /**
      * Display the specified resource.
@@ -117,8 +124,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        // $project = new Project;
-        return view('admin.projects.form', compact('project'));
+        $types = Type::orderBy('label')->get();
+        return view('admin.projects.form', compact('project','types'));
     }
 
     /**
@@ -136,6 +143,7 @@ class ProjectController extends Controller
             'name'=>'required|string|max:100',
             'contributors'=>'required|integer',
             'description'=>'required|string',
+            'type_id'=>'nullable|exists:types,id'
 
         ],
         [
@@ -148,6 +156,7 @@ class ProjectController extends Controller
             'contributors.integer'=> 'Contributors must be a number',
             'description.required'=> 'Description is Required',
             'description.string'=> 'Description must be a text',
+            'type_id.exists'=>'Id is invalid'
 
         ]);
         $data = $request->all();
