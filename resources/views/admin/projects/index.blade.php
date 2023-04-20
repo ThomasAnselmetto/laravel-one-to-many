@@ -97,7 +97,7 @@
         <tr class="table-dark w-100">
           <th>{{$project->id}}</th>
           <td>{{$project->name}}</td>
-          <td>{{$project->type?->label}}</td>
+          <td><span class="badge rounded-pill" style="background-color: {{$project->type?->color}}">{{$project->type?->label}}</span></td>
           <td>{{$project->contributors}}</td>
           <td>{{$project->getAbstract()}}</td>
           <td>{{$project->created_at}}</td>

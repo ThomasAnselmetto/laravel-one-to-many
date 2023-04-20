@@ -1,11 +1,12 @@
 <?php
-
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\HomeController as AdminHomecontroller;
-use App\Http\Controllers\Admin\ProjectController;
-use App\Http\Controllers\Guest\HomeController as GuestHomecontroller;
-use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\HomeController as AdminHomecontroller;
+use App\Http\Controllers\Guest\HomeController as GuestHomecontroller;
+
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,8 @@ Route::put('/projects/{project}/restore',[ProjectController::class, 'restore'])-
 Route::delete('/projects/{project}/force-delete',[ProjectController::class, 'forceDelete'])->name('projects.force-delete');
 
 Route::resource('projects', ProjectController::class);
+
+Route::resource('types', TypeController::class);
 // ->parameters(['projects' => 'project:slug']); 
 });
 

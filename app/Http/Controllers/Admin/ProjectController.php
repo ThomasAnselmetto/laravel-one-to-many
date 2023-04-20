@@ -77,7 +77,7 @@ class ProjectController extends Controller
             'contributors.integer'=> 'Contributors must be a number',
             'description.required'=> 'Description is Required',
             'description.string'=> 'Description must be a text',
-            'type_id.exists'=>'Id is invalid'
+            'type_id.exists'=>'Type is invalid'
 
         ]);
         $data = $request->all();
@@ -156,7 +156,7 @@ class ProjectController extends Controller
             'contributors.integer'=> 'Contributors must be a number',
             'description.required'=> 'Description is Required',
             'description.string'=> 'Description must be a text',
-            'type_id.exists'=>'Id is invalid'
+            'type_id.exists'=>'Type is invalid'
 
         ]);
         $data = $request->all();
