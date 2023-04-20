@@ -23,7 +23,7 @@
       <div class="col-8">
 
         <div class="col-10">
-          <label class="form-label" for="project_preview_img">project_preview_img</label>
+          <label class="form-label" for="project_preview_img">Image</label>
 
           <input type="file" name="project_preview_img" id="project_preview_img" class="@error('project_preview_img') is-invalid @enderror form-control">
           
@@ -36,7 +36,7 @@
         
         
         <div class="col-6">
-          <label class="form-label" for="name">name</label>
+          <label class="form-label" for="name">Name</label>
           <input type="text" name="name" id="name" class="@error('name') is-invalid @enderror form-control" value="{{old('name', $project->name)}}">
           @error('name')
           <div class="invalid-feedback">
@@ -44,9 +44,21 @@
           </div>
           @enderror
         </div>
+
+        <div class="col-6">
+          <label class="form-label" for="name">Type</label>
+          <select class="form-select" multiple aria-label="multiple select example">
+            <option value="">Without Type</option>
+            @foreach ($types as $type)
+            <option value="{{$type->id}}">{{$type->label}}</option>
+            @endforeach
+          </select>
+        </div>
+        
+                
           
         <div class="col-2">
-          <label class="form-label" for="contributors">contributors</label>
+          <label class="form-label" for="contributors">Contributors</label>
           <input type="number" name="contributors" id="contributors" class="@error('contributors') is-invalid @enderror form-control" value="{{old('contributors', $project->contributors)}}">
           @error('contributors')
           <div class="invalid-feedback">
@@ -57,7 +69,7 @@
       
     
         <div class="col-10">
-          <label class="form-label" for="description">description</label>
+          <label class="form-label" for="description">Description</label>
           <input type="text" name="description" id="description" class="@error('description') is-invalid @enderror form-control" value="{{old('description', $project->description)}}">
           @error('description')
           <div class="invalid-feedback">

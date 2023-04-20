@@ -11,6 +11,14 @@ class Project extends Model
 {
     use HasFactory,SoftDeletes;
 
+    // metto type e non types perche' i tipo possono avere piu' progetti ma ogni progetto ha un solo tipo
+    
+    // * Ora abbiamo accesso alla sintassi del tipo $post->category oppure $category->posts
+    
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
+
     public function getAbstract($max = 20) {
         return substr($this->description, 0 , $max) . "...";
     }
